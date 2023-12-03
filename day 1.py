@@ -22,6 +22,6 @@ input_name = "input.txt"
 sum_of_calibration_vals = 0
 for line in parse_lines(input_name):
     sum_of_calibration_vals += find_calibration_value(line)
-print(sum_of_calibration_vals)        
+print(f"part 2, sum of calibration values: {sum_of_calibration_vals}")        
     
     
