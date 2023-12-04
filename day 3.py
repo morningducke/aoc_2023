@@ -15,7 +15,6 @@ def bound_rectangle(matrix: list[str], query: list[int]):
     last_col = min(last_col, len(matrix[0]))
     last_row = min(last_row, len(matrix))
     return first_row, first_col, last_row, last_col
-    
 
 def is_symbol_adjacent(matrix: list[str], query: list[int]):
     """Checks if any symbols are in the rectangle formed by a number"""
