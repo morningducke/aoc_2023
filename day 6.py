@@ -19,8 +19,8 @@ def calc_ways(T: int, S_r: int) -> int:
     if d < 0:
         return 0
     elif d == 0:
-        # if intersects in one point but not on an integer value
-        return T // 2 if T % 2 == 0 else 0
+        # accounting for a case when intersects in one point but not on an integer value
+        return T % 2 == 0
 
     d_sqrt = (T**2 - 4*S_r)**(1/2)
     return ceil((T + d_sqrt) / 2 - 1) - floor((T - d_sqrt) / 2 + 1) + 1
