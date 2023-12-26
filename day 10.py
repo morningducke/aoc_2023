@@ -50,26 +50,36 @@ def get_start_pipe(graph: list[list[str]], start_pos: tuple[int, int]) -> str:
             pipe_to_moves["S"] = moves # hack for convenience
             return pipe
 
-def get_loop_length(graph: list[list[str]]):
+def get_loop(graph: list[list[str]]):
     start_pos = start_pos = find_start_pipe(graph)
     print(f"start pos {start_pos}")
     start_pipe = get_start_pipe(graph, start_pos)
     print(f"start pipe: {start_pipe}")
     marked = set()
+    loop = []
     def dfs(cur_pos: tuple[int, int]):
         if cur_pos in marked:
             return
         marked.add(cur_pos)
+        loop.append(cur_pos)
         for move in pipe_to_moves[graph[cur_pos[0]][cur_pos[1]]]:
             dfs(sum_tuples(cur_pos, move))
     dfs(start_pos)
-    return len(marked)
-    
+    return loop
 
+def get_polygon_area(loop: list[tuple[int, int]]) -> float:
+    x, y = zip(*loop)
+    # y[-1], x[-1] loop around for shoelace pattern
+    return 0.5 * abs(sum(x[i] * y[i - 1] - x[i - 1] * y[i] for i in range(len(loop))))
+
+def get_interior_points(polygon_area: float, boundary_points: int) -> int:
+    return int(polygon_area - boundary_points / 2 + 1)
 
 input_name = "input.txt"    
 graph = parse_matrix(input_name)
-print("part 1, farthest loop point: ", get_loop_length(graph) // 2)
+loop = get_loop(graph)
+print("part 1, farthest loop point: ", len(loop) // 2)
+print("part 2, enclosed tiles: ", get_interior_points(get_polygon_area(loop), len(loop)))
 
 
             
