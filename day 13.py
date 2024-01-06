@@ -1,3 +1,4 @@
+from utils.linalg import transpose
 from utils.parse import parse_matrices
 
 def hamming_dist(lhs: str, rhs: str) -> int:
@@ -25,8 +26,7 @@ def find_smidged_axis(matr: list[str]) -> int:
             return i + 1
     return 0
 
-def transpose(matr: list[str]) -> list[str]:
-    return ["".join(row) for row in zip(*matr)]
+
 
 input_name = "input.txt"
 part_1 = 0
