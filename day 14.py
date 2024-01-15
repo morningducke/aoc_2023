@@ -93,8 +93,8 @@ def find_loop(matr: list[str]) -> list[str]:
         cycle_num += 1
         
     cycle_length = cycle_num - states["".join(tilted_matr)]
-    position_after_cycles = (TOTAL_CYCLES - cycle_num + 1) % cycle_length
-    for _ in range(position_after_cycles - 1):
+    position_after_cycles = (TOTAL_CYCLES - cycle_num) % cycle_length
+    for _ in range(position_after_cycles):
         tilted_matr = tilt_cycle(tilted_matr)
         
     return cycle_num, cycle_length, position_after_cycles, tilted_matr
