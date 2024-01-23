@@ -1,7 +1,7 @@
 from collections import defaultdict
 from utils.parse import parse_lines
 
-def hash(s: str) -> int:
+def hash_(s: str) -> int:
     res = 0
     for code in s.encode("ascii"):
         res += code
@@ -24,18 +24,18 @@ boxes = defaultdict(dict)
 
 # part 1
 for s in data.split(","):
-    hash_sum += hash(s)
+    hash_sum += hash_(s)
     
 # part 2
 for s in data.split(","):
     if s[-1] == "-":
         label = s[:-1]
-        hash_value = hash(label)
+        hash_value = hash_(label)
         if hash_value in boxes and label in boxes[hash_value]:
             boxes[hash_value].pop(label)
     else:
         label, focal_length = s.split("=")        
-        hash_value = hash(label)
+        hash_value = hash_(label)
         boxes[hash_value][label] = int(focal_length)
 
 print(f"part 1, sum of hashes: {hash_sum}")
