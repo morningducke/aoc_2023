@@ -16,8 +16,6 @@ def get_focusing_power_sum(boxes: defaultdict[int, dict[str, int]]) -> int:
             focusing_power_sum += (box + 1) * (pos + 1) * focal_length
     return focusing_power_sum
         
-    
-    
 input = "input.txt"
 data = next(parse_lines(input))
 hash_sum = 0
@@ -39,8 +37,6 @@ for s in data.split(","):
         label, focal_length = s.split("=")        
         hash_value = hash(label)
         boxes[hash_value][label] = int(focal_length)
-        
-    
 
 print(f"part 1, sum of hashes: {hash_sum}")
 print(f"part 2, sum of focusing power: {get_focusing_power_sum(boxes)}")
